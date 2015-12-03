@@ -5,17 +5,21 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Assignment_10.Filters;
 using Assignment_10.Models;
+using Assignment_10.Services;
 
 namespace Assignment_10.Controllers {
 
     [Route("[controller]")]
     public class GladosController : Controller {
 
+        private ISecurityProvider securityProvider;
+
         private AuthorizationFilter filter = new AuthorizationFilter();
 
         private UsersModel users = new UsersModel();
 
-        public GladosController() {
+        public GladosController(ISecurityProvider securityProvider) {
+            this.securityProvider = securityProvider;
             PopulateDefaultUsers();
         }
 
@@ -31,11 +35,8 @@ namespace Assignment_10.Controllers {
         }
 
         [HttpGet]
-        public string Get() {
-
-
-            // TODO
-            return null;
+        public IEnumerable<UserModel> Get() {
+            return users.GetAll();
         }
         
         /*

@@ -17,6 +17,8 @@ namespace Assignment_10.Models {
             All.Add(userModel);
         }
         
-
+        public IEnumerable<UserModel> GetAll() {
+            return All;
+        }
     }
 }
