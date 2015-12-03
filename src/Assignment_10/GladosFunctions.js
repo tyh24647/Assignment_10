@@ -2,7 +2,7 @@
 
 function forcePushFunc() {
     $.ajax(serverURL, {
-        method: PUT,
+        method: "PUT",
         success: respondToAction,
         data: {
             Username: document.getElementById("username").value,
@@ -14,7 +14,7 @@ function forcePushFunc() {
 
 function forceGetFunc() {
     $.ajax(serverURL, {
-        method: GET,
+        method: "GET",
         success: respondToAction
     });
 }

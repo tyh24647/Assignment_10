@@ -6,7 +6,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 
 namespace Assignment_10.Services {
-    public class SecurityProvider {
+    public class SecurityProvider : ISecurityProvider {
         private RSACryptoServiceProvider keys;
 
         public SecurityProvider() {

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNet.Mvc;
 using Assignment_10.Filters;
 using Assignment_10.Models;
 using Assignment_10.Services;
+using System.Security.Claims;
 
 namespace Assignment_10.Controllers {
-
     [Route("[controller]")]
     public class GladosController : Controller {
 
@@ -20,9 +17,18 @@ namespace Assignment_10.Controllers {
 
         public GladosController(ISecurityProvider securityProvider) {
             this.securityProvider = securityProvider;
-            PopulateDefaultUsers();
+            //PopulateDefaultUsers();
         }
 
+        [HttpGet]
+        public string Get() {
+            var claims = new List<Claim>();
+            claims.Add(new Claim("Glados", "Cake"));
+            claims.Add(new Claim("Tyler", "Test"));
+            return this.securityProvider.GetToken(claims);
+        }
+
+        /*
         private void PopulateDefaultUsers() {
             UserModel model1 = new UserModel();
             UserModel model2 = new UserModel();
@@ -33,19 +39,17 @@ namespace Assignment_10.Controllers {
             users.Add(model1);
             users.Add(model2);
         }
+        */
 
+        /*
         [HttpGet]
         public IEnumerable<UserModel> Get() {
             return users.GetAll();
         }
-        
-        /*
-        // GET: glados
-        [HttpGet]
-        public IEnumerable<string> Get() {
-            return new string[] { "value1", "value2" };
-        }
+        */
 
+
+        /*
         // GET glados/5
         [HttpGet("{id}")]
         public string Get(int id) {
