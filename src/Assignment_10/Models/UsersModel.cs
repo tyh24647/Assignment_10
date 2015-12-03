@@ -7,18 +7,9 @@ using Microsoft.AspNet.Mvc;
 namespace Assignment_10.Models {
     public class UsersModel {
         
-        private List<UserModel> All = new List<UserModel>();
-
-        public void Add(UserModel userModel) {
-            if (userModel == null) {
-                return;
-            }
-
-            All.Add(userModel);
-        }
-        
-        public IEnumerable<UserModel> GetAll() {
-            return All;
-        }
+        public Dictionary<string, UserModel> All = new Dictionary<string, UserModel>() {
+             { "glados", new UserModel() { Username = "glados", Password = "cake" } },
+             { "Tyler", new UserModel() { Username = "Tyler", Password = "test" } }
+        };
     }
 }

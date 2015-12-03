@@ -4,9 +4,11 @@ using Assignment_10.Filters;
 using Assignment_10.Models;
 using Assignment_10.Services;
 using System.Security.Claims;
+using System;
 
 namespace Assignment_10.Controllers {
     [Route("[controller]")]
+    [TypeFilter(typeof(AuthorizationFilter))]
     public class GladosController : Controller {
 
         private ISecurityProvider securityProvider;
@@ -17,7 +19,6 @@ namespace Assignment_10.Controllers {
 
         public GladosController(ISecurityProvider securityProvider) {
             this.securityProvider = securityProvider;
-            //PopulateDefaultUsers();
         }
 
         [HttpGet]
@@ -27,53 +28,7 @@ namespace Assignment_10.Controllers {
             claims.Add(new Claim("Tyler", "Test"));
             return this.securityProvider.GetToken(claims);
         }
-
-        /*
-        private void PopulateDefaultUsers() {
-            UserModel model1 = new UserModel();
-            UserModel model2 = new UserModel();
-            model1.Username = "Glados";
-            model1.Password = "Cake";
-            model2.Username = "Tyler";
-            model2.Password = "Test";
-            users.Add(model1);
-            users.Add(model2);
-        }
-        */
-
-        /*
-        [HttpGet]
-        public IEnumerable<UserModel> Get() {
-            return users.GetAll();
-        }
-        */
-
-
-        /*
-        // GET glados/5
-        [HttpGet("{id}")]
-        public string Get(int id) {
-            return "value";
-        }
-
-        // POST glados
-        [HttpPost]
-        public void Post([FromBody]string value) {
-            // TODO
-        }
-
-        // PUT glados/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value) {
-            // TODO
-        }
-
-        // DELETE glados/5
-        [HttpDelete("{id}")]
-        public void Delete(int id) {
-            // TODO
-        }
-        */
-
+        
     }
 }
+

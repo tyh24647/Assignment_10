@@ -6,22 +6,18 @@
     <script src="GladosFunctions.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
-<body>
-    <div id="header">
-        <div id="header-title">Glados</div>
-    </div>
+<body onload="initDefaults()">
     <div id="site-wrapper">
         <form>
-            <textarea id="username"></textarea>
-            <textarea id="password"></textarea>
+            <input type="text" id="username" />
+            <input type="password" id="password" />
             <br />
-            <input type="button" value="Submit User" onclick="forcePushFunc()" />
-            <input type="button" value="Get Values" onclick="forceGetFunc()" />
+            <input type="button" value="Login" onclick="forcePushFunc()" />
+            <input type="button" value="Quote" onclick="forceGetFunc()" />
+            <br /><br />
         </form>
     </div>
     <div id="results"></div>
-    <div id="footer">
-        <div id="footer-text"></div>
-    </div>
+    <div id="logged-in-results"></div>
 </body>
 </html>

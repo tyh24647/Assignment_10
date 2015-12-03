@@ -1,9 +1,13 @@
-﻿var serverURL = "http://localhost:59243/glados";
+﻿var serverURL = "http://localhost:59243/";
+
+function initDefaults() {
+    document.getElementById("logged-in-results").textContent = "User is not logged in";
+}
 
 function forcePushFunc() {
-    $.ajax(serverURL, {
-        method: "PUT",
-        success: respondToAction,
+    $.ajax(serverURL + "login", {
+        method: "POST",
+        success: respondToLogin,
         data: {
             Username: document.getElementById("username").value,
             Password: document.getElementById("password").value
@@ -13,13 +17,17 @@ function forcePushFunc() {
 }
 
 function forceGetFunc() {
-    $.ajax(serverURL, {
+    $.ajax(serverURL + "glados", {
         method: "GET",
         success: respondToAction
     });
 }
 
+function respondToLogin(data, data2, data3) {
+    document.getElementById("logged-in-results").textContent = "User is logged in";
+}
+
 function respondToAction(data, data2, data3) {
     var resultsDiv = document.getElementById("results");
-    resultsDiv.textContent = JSON.parse(data);
+    resultsDiv.textContent = JSON.stringify(data);
 }
